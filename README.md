@@ -2,6 +2,11 @@
 
 This is an example project using Bun, HTMX, Tailwind, and Preact for a full-stack application.
 
+The latest version of Bun (`v0.8.0`) breaks file watcher for me. Downgrade to or install the previous
+```sh
+curl -fsSL https://bun.sh/install | bash -s bun-v0.7.3
+```
+
 ```bash
 bun install
 bun devv # yes, two v's here
