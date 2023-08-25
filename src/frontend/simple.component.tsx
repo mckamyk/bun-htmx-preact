@@ -1,20 +1,22 @@
 import register from 'preact-custom-element'
 import { useState } from 'preact/hooks'
 
-export type SimpleElementProps = {
-  testString: string
+export interface SimpleElementProps {
+  htmlProp: string
 }
 
-const Simple = ({testString}: SimpleElementProps) => {
+const Simple = ({htmlProp}: SimpleElementProps) => {
   const [counter, setCounter] = useState(1)
   return (
-    <div className="border border-sky-800 p-4 rounded-md">
+    <div className="border-4 border-sky-700 p-4 rounded-md">
       <div>This is a Preact Web Component</div>
-      <div>Test String: {testString}</div>
-      <div>Counter: {counter}</div>
-      <button onClick={() => setCounter(counter + 1)}>Add</button>
+      <div>Prop from HTML: {htmlProp}</div>
+      <div class="flex justify-between items-center">
+        <div> useState Counter: {counter}</div>
+        <button className="bg-sky-800 rounded-md px-2 py-1" onClick={() => setCounter(counter + 1)}>Add</button>
+      </div>
     </div>
   )
 }
 
-register(Simple, 'simple-el', ['test-string'])
+register(Simple, 'simple-el', ['html-prop'])

@@ -1,9 +1,10 @@
 declare namespace JSX {
   interface SimpleElement {
-    testString: string
+    htmlProp: string
   }
 
   interface IntrinsicElements {
     simpleEl: SimpleElement
+    fooComponent: {}
   }
 }
