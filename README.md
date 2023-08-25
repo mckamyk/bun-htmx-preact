@@ -74,11 +74,14 @@ To get type hinting in your editor, you'll need to add the information to the JS
 
 ```ts
 // src/components.d.ts
-import {MyComponentProps} from './frontend/myComponent.component.tsx'
 
 declare namespace JSX {
+    interface MyComponent {
+        inputString: string
+    }
+
     interface IntrinsicElements {
-        myComponent: MyComponentProps
+        myComponent: MyComponent
     }
 }
 ```
