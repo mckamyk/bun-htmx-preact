@@ -32,6 +32,7 @@ async function build(path?: string, mode?: "added" | "updated" | "deleted") {
     entrypoints: files,
     outdir: 'dist',
     minify: false,
+    splitting: true,
   })
   
   bundlerLog.info(`${output.outputs.length} components built in ${Date.now()-t}ms.`)

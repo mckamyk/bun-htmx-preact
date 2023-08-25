@@ -33,3 +33,73 @@ All front-end files and components that aren't top-level can just be `myChildCom
 Frontend components are rendered in separate VDOMs. This means that \(p\)react context + providers will only work within a particular component.
 Two separate components cannot share a context/provider. You'll need to use a document-level storage to communicate between components.
 
+You must register the top-level components as a web component.
+
+```js
+// src/frontend/myComponent.component.tsx
+import preactComponent from 'preact-custom-element'
+
+const MyComponent = () => {
+    return (
+        <div>Hello, world!</div>
+    )
+}
+
+preactComponent(MyComponent, 'my-component')
+```
+
+This is what registers them, capable to be rendered in the browser in HTML.
+
+You can include props as well.
+
+```js
+// src/frontend/myComponent.component.tsx
+import preactComponent from 'preact-custom-element'
+
+export type MyComponentProps = {
+    inputString: string // use camelCase here
+}
+
+const MyComponent = ({inputString}: MyComponentProps) => {
+    return (
+        <div>Hello, {inputString}!</div>
+    )
+}
+
+//                            v tag name      v html attributes to watch
+preactComponent(MyComponent, 'my-component', ['input-string']) // use kebab-case version of the name/attributes
+```
+
+To get type hinting in your editor, you'll need to add the information to the JSX namespace
+
+```ts
+// src/components.d.ts
+import {MyComponentProps} from './frontend/myComponent.component.tsx'
+
+declare namespace JSX {
+    interface IntrinsicElements {
+        myComponent: MyComponentProps
+    }
+}
+```
+
+Now, you get type safety and hinting when writing the backend code.
+
+```ts
+// src/backend/main.tsx
+
+export const registerRoute = (app: any) => {
+    app.get('/main', Main)
+}
+
+const Main = () => {
+    return (
+        <div>
+            <script type="module" src="/public/myComponent.component.js" />
+            <my-component></my-component> // ❌ inputString is required!
+            <my-component inputString="galaxy"></my-component> // ✅ 
+        </div>
+    )
+}
+```
+
