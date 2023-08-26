@@ -1,12 +1,11 @@
 import register from 'preact-custom-element'
-import { useState } from 'preact/hooks'
+import { useEffect, useRef, useState } from 'preact/hooks'
+import { useHtmx } from './hooks/useHtmx';
 
-export interface SimpleElementProps {
-  htmlProp: string
-}
-
-const Simple = ({htmlProp}: SimpleElementProps) => {
+const Simple = ({htmlProp}: JSX.SimpleElement) => {
   const [counter, setCounter] = useState(1)
+  const ref = useHtmx();
+
   return (
     <div className="border-4 border-sky-700 p-4 rounded-md">
       <div>This is a Preact Web Component</div>
@@ -15,6 +14,8 @@ const Simple = ({htmlProp}: SimpleElementProps) => {
         <div> useState Counter: {counter}</div>
         <button className="bg-sky-800 rounded-md px-2 py-1" onClick={() => setCounter(counter + 1)}>Add</button>
       </div>
+
+      <div ref={ref} hx-get="/another" hx-trigger="load" />
     </div>
   )
 }
