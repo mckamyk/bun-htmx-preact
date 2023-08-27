@@ -13,8 +13,6 @@ const Main = () => {
   <div class="flex justify-center mt-[300px]">
     <div class="max-w-[800px] border-4 border-green-700 p-4 rounded-md">
       <Simple htmlProp='galaxy' />
-
-      <div hx-get="/simple" hx-trigger="load" />
       <fooComponent></fooComponent>
     </div>
   </div>

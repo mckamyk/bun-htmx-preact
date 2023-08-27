@@ -1,5 +1,5 @@
 import register from 'preact-custom-element'
-import { useEffect, useRef, useState } from 'preact/hooks'
+import { useState } from 'preact/hooks'
 import { useHtmx } from './hooks/useHtmx';
 
 const Simple = ({htmlProp}: JSX.SimpleElement) => {
