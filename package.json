@@ -4,15 +4,14 @@
   "type": "module",
   "scripts": {
     "devv": "bunx concurrently 'bun build:w' 'bun start:w'",
-    "start": "bun run --tsconfig-override src/backend/tsconfig.json src/index.ts",
-    "start:w": "bun run --watch --tsconfig-override src/backend/tsconfig.json src/index.ts",
-    "build": "bun run --tsconfig-override src/frontend/tsconfig.json src/bundle.ts",
-    "build:w": "bun run --tsconfig-override src/frontend/tsconfig.json src/bundle.ts --watch"
+    "start": "bun run src/index.ts",
+    "start:w": "bun run --watch src/index.ts",
+    "build": "bun run src/bundle.ts",
+    "build:w": "bun run src/bundle.ts --watch"
   },
   "devDependencies": {
     "@types/preact-custom-element": "^4.0.1",
-    "bun-types": "latest",
-    "concurrently": "^8.2.1"
+    "bun-types": "latest"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"

@@ -8,7 +8,7 @@ const Simple = ({htmlProp}: JSX.SimpleElement) => {
 
   return (
     <div className="border-4 border-sky-700 p-4 rounded-md">
-      <div>This is a Preact Web Component</div>
+      <div>This is a Preact Web Component!</div>
       <div>Prop from HTML: {htmlProp}</div>
       <div class="flex justify-between items-center">
         <div> useState Counter: {counter}</div>
